@@ -21,9 +21,9 @@ module alu(A, B, O, CTR, ck);
     (C == 'b1001 ? INA | INB :
     (C == 'b1010 ? INA ^ INB :
     (C == 'b1011 ? ~INA :
-    (C == 'b1100 ? INA >> 1 :
-    (C == 'b1101 ? INA << 1 :
-    (C == 'b1110 ? { INA & 8'b10000000, INA >> 1 } :
-    (C == 'b1111 ? { INA & 8'b00000001, INA << 1 } : 0
+    (C == 'b1100 ? { 1'b0, INA[7:1] }:
+    (C == 'b1101 ? { INA[6:0], 1'b0 }:
+    (C == 'b1110 ? { INA[0], INA[7:1] } :
+    (C == 'b1111 ? { INA[6:0], INA[7] } : 0
     ))))))))));
 endmodule
